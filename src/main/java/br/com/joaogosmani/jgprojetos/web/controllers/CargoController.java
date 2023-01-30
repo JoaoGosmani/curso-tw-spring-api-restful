@@ -1,4 +1,4 @@
-package br.com.joaogosmani.jgprojetos.controllers;
+package br.com.joaogosmani.jgprojetos.web.controllers;
 
 import javax.validation.Valid;
 
