@@ -22,7 +22,15 @@ public class HomeControllerApi {
             .withRel("cargos")
             .withType("GET");
 
-        homeModel.add(cargosLink);
+        Link clientesLink = linkTo(methodOn(ClienteControllerApi.class).buscarTodos(null))
+            .withRel("clientes")
+            .withType("GET");
+
+        Link funcionariosLink = linkTo(methodOn(FuncionarioControllerApi.class).buscarTodos(null))
+            .withRel("funcionarios")
+            .withType("GET");
+
+        homeModel.add(cargosLink, clientesLink, funcionariosLink);
 
         return homeModel;
     }

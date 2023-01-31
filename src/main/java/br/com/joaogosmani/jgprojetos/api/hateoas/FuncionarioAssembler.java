@@ -29,7 +29,11 @@ public class FuncionarioAssembler implements SimpleRepresentationModelAssembler<
             .withSelfRel()
             .withType("GET");
 
-        resource.add(cargoLink, selfLink);
+        Link projetosLink = linkTo(methodOn(FuncionarioControllerApi.class).buscarProjetos(id))
+            .withRel("projetos")
+            .withType("GET");
+
+        resource.add(cargoLink, projetosLink, selfLink);
     }
 
     @Override
