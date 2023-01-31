@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.joaogosmani.jgprojetos.api.dto.CargoDTO;
+import br.com.joaogosmani.jgprojetos.api.mappers.CargoMapper;
 import br.com.joaogosmani.jgprojetos.exceptions.CargoNaoEncontradoException;
 import br.com.joaogosmani.jgprojetos.exceptions.CargoPossuiFuncionariosException;
 import br.com.joaogosmani.jgprojetos.models.Cargo;
@@ -20,6 +21,9 @@ public class CargoService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+
+    @Autowired
+    private CargoMapper cargoMapper;
 
     public List<Cargo> buscarTodos() {
         return cargoRepository.findAll();
@@ -37,15 +41,22 @@ public class CargoService {
     }
 
     public Cargo cadastrar(CargoDTO cargoDTO) {
-        Cargo cargo = new Cargo();
-
-        cargo.setNome(cargoDTO.getNome());
+        Cargo cargo = cargoMapper.converterParaEntidade(cargoDTO);
 
         return cargoRepository.save(cargo);
     }
 
     public Cargo atualizar(Cargo cargo, Long id) {
         buscarPorId(id);
+
+        return cargoRepository.save(cargo);
+    }
+
+    public Cargo atualizar(CargoDTO cargoDTO, Long id) {
+        buscarPorId(id);
+
+        Cargo cargo = cargoMapper.converterParaEntidade(cargoDTO);
+        cargo.setId(id);
 
         return cargoRepository.save(cargo);
     }
