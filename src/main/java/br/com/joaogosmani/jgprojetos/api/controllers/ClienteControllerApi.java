@@ -7,6 +7,7 @@ import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,6 +33,13 @@ public class ClienteControllerApi {
         Page<Cliente> clientes = clienteService.buscarTodos(paginacao);
 
         return pagedResourcesAssembler.toModel(clientes, clienteAssembler);
+    }
+
+    @GetMapping("/{id}")
+    public EntityModel<Cliente> buscarPorId(@PathVariable Long id) {
+        Cliente cliente = clienteService.buscarPorId(id);
+
+        return clienteAssembler.toModel(cliente);
     }
 
 }
