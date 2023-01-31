@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.joaogosmani.jgprojetos.api.dto.CargoDTO;
 import br.com.joaogosmani.jgprojetos.exceptions.CargoNaoEncontradoException;
 import br.com.joaogosmani.jgprojetos.exceptions.CargoPossuiFuncionariosException;
 import br.com.joaogosmani.jgprojetos.models.Cargo;
@@ -32,6 +33,14 @@ public class CargoService {
     }
 
     public Cargo cadastrar(Cargo cargo) {
+        return cargoRepository.save(cargo);
+    }
+
+    public Cargo cadastrar(CargoDTO cargoDTO) {
+        Cargo cargo = new Cargo();
+
+        cargo.setNome(cargoDTO.getNome());
+
         return cargoRepository.save(cargo);
     }
 
