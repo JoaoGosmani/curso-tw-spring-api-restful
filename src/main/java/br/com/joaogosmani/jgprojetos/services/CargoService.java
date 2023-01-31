@@ -3,6 +3,8 @@ package br.com.joaogosmani.jgprojetos.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.joaogosmani.jgprojetos.api.dto.CargoDTO;
@@ -27,6 +29,10 @@ public class CargoService {
 
     public List<Cargo> buscarTodos() {
         return cargoRepository.findAll();
+    }
+
+    public Page<Cargo> buscarTodos(Pageable paginacao) {
+        return cargoRepository.findAll(paginacao);
     }
 
     public Cargo buscarPorId(Long id) {

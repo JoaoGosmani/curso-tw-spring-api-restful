@@ -18,7 +18,7 @@ public class HomeControllerApi {
     public HomeModel home() {
         HomeModel homeModel = new HomeModel();
 
-        Link cargosLink = linkTo(methodOn(CargoControllerApi.class).buscarTodos())
+        Link cargosLink = linkTo(methodOn(CargoControllerApi.class).buscarTodos(null))
             .withRel("cargos")
             .withType("GET");
 

@@ -1,10 +1,11 @@
 package br.com.joaogosmani.jgprojetos.api.controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.HttpStatus;
@@ -34,11 +35,14 @@ public class CargoControllerApi {
     @Autowired
     private CargoAssembler cargoAssembler;
 
-    @GetMapping
-    public CollectionModel<EntityModel<Cargo>> buscarTodos() {
-        List<Cargo> cargos = cargoService.buscarTodos();
+    @Autowired
+    private PagedResourcesAssembler<Cargo> pagedResourcesAssembler;
 
-        return cargoAssembler.toCollectionModel(cargos);
+    @GetMapping
+    public CollectionModel<EntityModel<Cargo>> buscarTodos(Pageable paginacao) {
+        Page<Cargo> cargos = cargoService.buscarTodos(paginacao);
+
+        return pagedResourcesAssembler.toModel(cargos, cargoAssembler);
     }
 
     @GetMapping("/{id}")
