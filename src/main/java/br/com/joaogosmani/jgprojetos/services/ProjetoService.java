@@ -51,6 +51,15 @@ public class ProjetoService {
         return projetoRepository.save(projeto);
     }
 
+    public Projeto atualizar(ProjetoDTO projetoDTO, Long id) {
+        buscarPorId(id);
+
+        Projeto projeto = projetoMapper.converterParaEntidade(projetoDTO);
+        projeto.setId(id);
+
+        return projetoRepository.save(projeto);
+    }
+
     public void excluirPorId(Long id) {
         Projeto projetoEncontrado = buscarPorId(id);
 
