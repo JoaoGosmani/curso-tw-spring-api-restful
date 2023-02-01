@@ -1,5 +1,7 @@
 package br.com.joaogosmani.jgprojetos.api.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.joaogosmani.jgprojetos.api.dto.ProjetoDTO;
+import br.com.joaogosmani.jgprojetos.api.hateoas.FuncionarioAssembler;
 import br.com.joaogosmani.jgprojetos.api.hateoas.ProjetoAssembler;
+import br.com.joaogosmani.jgprojetos.models.Funcionario;
 import br.com.joaogosmani.jgprojetos.models.Projeto;
 import br.com.joaogosmani.jgprojetos.services.ProjetoService;
 
@@ -37,6 +41,9 @@ public class ProjetoControllerApi {
 
     @Autowired
     private PagedResourcesAssembler<Projeto> pagedResourcesAssembler;
+
+    @Autowired
+    private FuncionarioAssembler funcionarioAssembler;
 
     @GetMapping
     public CollectionModel<EntityModel<Projeto>> buscarTodos(Pageable paginacao) {
@@ -74,5 +81,11 @@ public class ProjetoControllerApi {
 
         return ResponseEntity.noContent().build();
     }
+    
+    @GetMapping("/{id}/equipe")
+    public CollectionModel<EntityModel<Funcionario>> buscarEquipe(@PathVariable Long id) {
+        List<Funcionario> equipe = projetoService.buscarPorId(id).getEquipe();
 
+        return funcionarioAssembler.toCollectionModel(equipe);
+    }
 }
