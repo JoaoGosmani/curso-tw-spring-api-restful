@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.joaogosmani.jgprojetos.api.dto.ProjetoDTO;
+import br.com.joaogosmani.jgprojetos.api.mappers.ProjetoMapper;
 import br.com.joaogosmani.jgprojetos.exceptions.ProjetoNaoEncontradoException;
 import br.com.joaogosmani.jgprojetos.models.Projeto;
 import br.com.joaogosmani.jgprojetos.repositories.ProjetoRepository;
@@ -16,6 +18,9 @@ public class ProjetoService {
 
     @Autowired
     private ProjetoRepository projetoRepository;
+
+    @Autowired
+    private ProjetoMapper projetoMapper;
 
     public List<Projeto> buscarTodos() {
         return projetoRepository.findAll();
@@ -31,6 +36,12 @@ public class ProjetoService {
     }
 
     public Projeto cadastrar(Projeto projeto) {
+        return projetoRepository.save(projeto);
+    }
+
+    public Projeto cadastrar(ProjetoDTO projetoDTO) {
+        Projeto projeto = projetoMapper.converterParaEntidade(projetoDTO);
+
         return projetoRepository.save(projeto);
     }
 
