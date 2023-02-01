@@ -3,6 +3,8 @@ package br.com.joaogosmani.jgprojetos.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.joaogosmani.jgprojetos.exceptions.ProjetoNaoEncontradoException;
@@ -17,6 +19,10 @@ public class ProjetoService {
 
     public List<Projeto> buscarTodos() {
         return projetoRepository.findAll();
+    }
+
+    public Page<Projeto> buscarTodos(Pageable paginacao) {
+        return projetoRepository.findAll(paginacao);
     }
 
     public Projeto buscarPorId(Long id) {
