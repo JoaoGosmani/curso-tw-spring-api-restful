@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.joaogosmani.jgprojetos.api.docs.CargoControllerApiDoc;
 import br.com.joaogosmani.jgprojetos.api.dto.CargoDTO;
 import br.com.joaogosmani.jgprojetos.api.hateoas.CargoAssembler;
 import br.com.joaogosmani.jgprojetos.models.Cargo;
@@ -27,7 +28,7 @@ import br.com.joaogosmani.jgprojetos.services.CargoService;
 
 @RestController
 @RequestMapping("/api/v1/cargos")
-public class CargoControllerApi {
+public class CargoControllerApi implements CargoControllerApiDoc {
     
     @Autowired
     private CargoService cargoService;
