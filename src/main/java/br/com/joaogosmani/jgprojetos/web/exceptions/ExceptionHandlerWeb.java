@@ -1,4 +1,4 @@
-package br.com.joaogosmani.jgprojetos.exceptions;
+package br.com.joaogosmani.jgprojetos.web.exceptions;
 
 import java.util.Map;
 
@@ -6,11 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorViewResolver;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 
-@ControllerAdvice
-public class ExceptionHandler implements ErrorViewResolver {
+@ControllerAdvice(annotations = Controller.class)
+public class ExceptionHandlerWeb implements ErrorViewResolver {
 
     @Override
     public ModelAndView resolveErrorView(HttpServletRequest request, HttpStatus status, Map<String, Object> model) {
