@@ -30,7 +30,11 @@ public class HomeControllerApi {
             .withRel("funcionarios")
             .withType("GET");
 
-        homeModel.add(cargosLink, clientesLink, funcionariosLink);
+        Link projetosLink = linkTo(methodOn(ProjetoControllerApi.class).buscarTodos(null))
+            .withRel("projetos")
+            .withType("GET");
+
+        homeModel.add(cargosLink, clientesLink, funcionariosLink, projetosLink);
 
         return homeModel;
     }
