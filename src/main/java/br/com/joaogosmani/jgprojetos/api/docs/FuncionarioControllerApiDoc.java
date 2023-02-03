@@ -5,6 +5,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 
 import br.com.joaogosmani.jgprojetos.api.annotations.ApiPageable;
+import br.com.joaogosmani.jgprojetos.api.exceptions.ApiErro;
 import br.com.joaogosmani.jgprojetos.models.Funcionario;
 import br.com.joaogosmani.jgprojetos.models.Projeto;
 import io.swagger.annotations.Api;
@@ -26,13 +27,14 @@ public interface FuncionarioControllerApiDoc {
     @ApiOperation(value = "Buscar funcionário por id")
     @ApiResponses(value = {
         @ApiResponse(code = 200, message = "Funcionário encontrado com sucesso"),
-        @ApiResponse(code = 404, message = "Funcionário não encontrado")
+        @ApiResponse(code = 404, message = "Funcionário não encontrado", response = ApiErro.class)
     })
     EntityModel<Funcionario> buscarPorId(Long id);
 
     @ApiOperation(value = "Listar todos os projetos do funcionário")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Listagem dos projetos do funcionário realizada com sucesso")
+        @ApiResponse(code = 200, message = "Listagem dos projetos do funcionário realizada com sucesso"),
+        @ApiResponse(code = 404, message = "Funcionário não encontrado", response = ApiErro.class)
     })
     CollectionModel<EntityModel<Projeto>> buscarProjetos(Long id);
 

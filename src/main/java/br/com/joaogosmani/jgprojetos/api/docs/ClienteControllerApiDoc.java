@@ -33,7 +33,8 @@ public interface ClienteControllerApiDoc {
 
     @ApiOperation(value = "Listar todos os projetos do cliente")
     @ApiResponses(value = {
-        @ApiResponse(code = 200, message = "Listagem dos projetos do cliente realizada com sucesso")
+        @ApiResponse(code = 200, message = "Listagem dos projetos do cliente realizada com sucesso"),
+        @ApiResponse(code = 404, message = "Cliente não encontrado", response = ApiErro.class)
     })
     CollectionModel<EntityModel<Projeto>> buscarProjetos(Long id);
 
