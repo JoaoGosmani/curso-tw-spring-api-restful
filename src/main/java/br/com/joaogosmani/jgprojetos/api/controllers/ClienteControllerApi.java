@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.joaogosmani.jgprojetos.api.docs.ClienteControllerApiDoc;
 import br.com.joaogosmani.jgprojetos.api.hateoas.ClienteAssembler;
 import br.com.joaogosmani.jgprojetos.api.hateoas.ProjetoAssembler;
 import br.com.joaogosmani.jgprojetos.models.Cliente;
@@ -21,7 +22,7 @@ import br.com.joaogosmani.jgprojetos.services.ClienteService;
 
 @RestController
 @RequestMapping("/api/v1/clientes")
-public class ClienteControllerApi {
+public class ClienteControllerApi implements ClienteControllerApiDoc {
     
     @Autowired
     private ClienteService clienteService;
