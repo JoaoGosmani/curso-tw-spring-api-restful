@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.joaogosmani.jgprojetos.api.docs.HomeControllerApiDoc;
 import br.com.joaogosmani.jgprojetos.api.hateoas.HomeModel;
 
 @RestController
 @RequestMapping("/api/v1")
-public class HomeControllerApi {
+public class HomeControllerApi implements HomeControllerApiDoc {
     
     @GetMapping
     public HomeModel home() {
