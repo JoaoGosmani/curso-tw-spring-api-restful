@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.joaogosmani.jgprojetos.api.docs.FuncionarioControllerApiDoc;
 import br.com.joaogosmani.jgprojetos.api.hateoas.FuncionarioAssembler;
 import br.com.joaogosmani.jgprojetos.api.hateoas.ProjetoAssembler;
 import br.com.joaogosmani.jgprojetos.models.Funcionario;
@@ -21,7 +22,7 @@ import br.com.joaogosmani.jgprojetos.services.FuncionarioService;
 
 @RestController
 @RequestMapping("/api/v1/funcionarios")
-public class FuncionarioControllerApi {
+public class FuncionarioControllerApi implements FuncionarioControllerApiDoc {
     
     @Autowired
     private FuncionarioService funcionarioService;
